@@ -60,11 +60,17 @@ class AuthController extends Controller
             ], 422);
         }
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json(['message' => 'Credenciais inválidas'], 401);
+        try {
+            if (!Auth::attempt($request->only('email', 'password'))) {
+                return response()->json(['status' => 'error', 'message' => 'Credenciais inválidas'], 401);
+            }
+            $user = Auth::user();
+            $token = $user->createToken('token')->plainTextToken;
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Erro ao realizar login'], 500);
         }
-        $user = Auth::user();
-        $token = $user->createToken('token')->plainTextToken;
+
+        
         return response()->json(['user' => $user, 'token' => $token]);
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->bigInteger()->unsigned()->autoIncrement();
             $table->string('name');
             $table->string('email')->unique();
-            $table->enum('roles',['admin','customer'])->default('customer');
+            $table->enum('roles',['admin','superadmin','user'])->default('admin');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
