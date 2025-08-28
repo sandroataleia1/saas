@@ -4,11 +4,11 @@ namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Enterprise extends Model
+class Company extends Model
 {
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name','cpf_cnpj','slug','address', 'city', 'state', 'zip', 'country', 'phone'];
 
-    protected $table = 'enterprises';
+    protected $table = 'companies';
 
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -21,7 +21,7 @@ class Enterprise extends Model
         return $this->hasMany(Category::class);
     }
 
-    public function users_has_enterprise()
+    public function users()
     {
         return $this->hasMany(User::class);
     }
@@ -31,4 +31,8 @@ class Enterprise extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function phones()
+    {
+        return $this->hasMany(Phone::class);
+    }
 }

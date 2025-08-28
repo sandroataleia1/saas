@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->default(1);
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->foreignId('enterprise_id')->constrained('enterprises')->onDelete('cascade');
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
         });
     }
 

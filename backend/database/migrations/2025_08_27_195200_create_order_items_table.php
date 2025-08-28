@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_has_enterprises', function (Blueprint $table) {
-            $table->id()->bigInteger()->unsigned()->autoIncrement();
+        Schema::create('order_items', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
-
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('enterprise_id')->constrained('enterprises')->onDelete('cascade');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_has_enterprises');
+        Schema::dropIfExists('order_items');
     }
 };

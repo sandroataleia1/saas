@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enterprises', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->bigInteger('id')->unsigned()->autoIncrement();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
+            $table->string('cpf_cnpj')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('phone');
             $table->string('address')->nullable();
             $table->string('number')->nullable();
             $table->string('city')->nullable();
@@ -23,7 +24,6 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('zip')->nullable();
             $table->string('complement')->nullable();
-            $table->string('cnpj')->unique();
             $table->timestamps();
         });
     }
